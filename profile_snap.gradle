@@ -9,4 +9,12 @@ task setEnv {
     props.setProperty('postgresqlUsername', System.getenv("SNAP_DB_PG_USER"))
     props.setProperty('postgresqlPassword', System.getenv("SNAP_DB_PG_PASSWORD"))
     props.setProperty('projectRootDir', project.rootDir.absolutePath)
+    props.setProperty('PROFILE', 'snap')
+    props.setProperty('oktaCertificate', '')
+    props.setProperty('oktaRedirect', '')
+    props.setProperty('oktaApiKey', '')
+    props.setProperty('oktaUrl', '')
+    props.setProperty('oktaEntityId', '')
+
+    props.store(propFile.newWriter(), "Snap environment properties")
 }

@@ -35,4 +35,6 @@
         </mvc:interceptors>
     </beans>
 
+    <beans profile="test,snap" />
+
 </beans>

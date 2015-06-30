@@ -3,6 +3,7 @@ ext.propFile = new File("src/main/resources/dev.properties")
 task setEnv {
     props.load(propFile.newDataInputStream())
     props.setProperty('projectRootDir', project.rootDir.absolutePath)
+    props.setProperty('PROFILE', 'dev')
     props.store(propFile.newWriter(), "Local environment properties")
 }
 

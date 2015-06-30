@@ -14,15 +14,17 @@ apply plugin: 'idea'
 apply plugin: 'war'
 apply plugin: 'application'
 apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'com.bmuschko.tomcat-base'
 apply plugin: 'org.flywaydb.flyway'
 
 ext.props = new Properties()
 
-if (System.getenv("PROFILE") == 'snap') {
+def profile = System.getenv("PROFILE")
+if (profile == 'snap') {
     apply from: 'profile_snap.gradle'
-} else if (System.getenv("PROFILE") == 'heroku') {
+} else if (profile == 'heroku') {
     apply from: 'profile_heroku.gradle'
-} else if (System.getenv("PROFILE") == 'test'){
+} else if (profile == 'test'){
     apply from: 'profile_test.gradle'
 } else {
     apply from: 'profile_dev.gradle'
@@ -42,8 +44,6 @@ war {
         }
     }
 }
-
-tomcat.contextPath = '/'
 
 repositories {
     mavenCentral()
@@ -119,9 +119,8 @@ task testingTomcatStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
 
 }
 
-task functional(type: Test, dependsOn: ['setEnv', 'war', 'testingTomcatRun']) {
+task functional(type: Test, dependsOn: ['setEnv', 'flywayMigrate', 'testingTomcatRun']) {
     outputs.upToDateWhen {false}
-
     exclude '**/unit/**'
     include '**/functional/**'
     finalizedBy testingTomcatStop
