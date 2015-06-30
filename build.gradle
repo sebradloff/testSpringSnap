@@ -33,7 +33,15 @@ targetCompatibility = 1.8
 
 version = '1.0'
 
-war.baseName = "simpleSpring"
+war {
+    baseName = "simpleSpring"
+
+    eachFile {
+        if (it.name == 'web.xml') {
+            it.filter {String line -> line.replaceAll('\\$\\{PROFILE:dev\\}', System.getenv("PROFILE")) }
+        }
+    }
+}
 
 tomcat.contextPath = '/'
 
@@ -111,7 +119,7 @@ task testingTomcatStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
 
 }
 
-task functional(type: Test, dependsOn: ['setEnv', 'testingTomcatRun']) {
+task functional(type: Test, dependsOn: ['setEnv', 'war', 'testingTomcatRun']) {
     outputs.upToDateWhen {false}
 
     exclude '**/unit/**'
