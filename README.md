@@ -77,5 +77,5 @@ Also, if you want to set the profile to something specific locally use the follo
 
     PROFILE=<profile> ./gradlew <task(s)>
     
-1. You will need a dev.properties file for the project to work in your local environment. A sample of this file can be found as an attachment on the Mingle page. 
+1. You will need the dev.properties and test.properties files for the project to work in your local environment. A sample of this file can be found as an attachment on the Mingle page. 
 2. Whatever you do, DON'T PUSH okta_config.xml
