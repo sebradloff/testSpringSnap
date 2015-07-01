@@ -24,7 +24,7 @@
 
 ## Running the App
 
-    ./gradlew clean compileJava runApp
+    PROFILE=dev ./gradlew clean compileJava runApp
 
 Access it through `localhost:8080` or `https://localhost:8443` on your browser
 
