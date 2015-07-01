@@ -24,4 +24,3 @@ src/main/resources/heroku.properties
 src/main/resources/snap.properties
 src/main/resources/test.properties
 src/main/resources/dev.properties
-src/main/resources/okta_config.xml
