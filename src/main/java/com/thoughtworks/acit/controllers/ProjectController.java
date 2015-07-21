@@ -20,6 +20,7 @@ public class ProjectController {
     @RequestMapping(value="/projects", method = RequestMethod.GET)
     public ModelAndView display() {
         List<Project> projectList = projectService.getProjectList();
+        //This is a useless line.
         ModelMap model = new ModelMap();
         model.put("projectList", projectList);
         return new ModelAndView("projects", model);
